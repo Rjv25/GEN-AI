@@ -1,1 +1,118 @@
+CREATE
+  (nnrg:Institution {name: 'NNRG'}),
+  (dean:Role {name: 'Dean'}),
+  (chairman:Role {name: 'Chairman'}),
+  (director:Role {name: 'Director'}),
+  (hod:Role {name: 'HOD'}),
+  (cse:Department {name: 'CSE'}),
+  (firstYear:Year {name: 'first year'}),
+  (secondYear:Year {name: 'second year'}),
+  (thirdYear:Year {name: 'third year'}),
+  (fourthYear:Year {name: 'fourth year'}),
+  (Vishwani:Student {name: 'Vishwani'}),
+  (swetha:Student {name: 'swetha'}),
+  (teja:Student {name: 'teja'}),
+  (nikitha:Student {name: 'nikitha'}),
+  (pranaya:Student {name: 'pranaya'}),
+  (akshitha:Student {name: 'akshitha'}),
+  (pravalika:Student {name: 'pravalika'}),
+  (akshara:Student {name: 'akshara'}),
+  (sruthi:Student {name: 'sruthi'}),
+  (sravya:Student {name: 'sravya'}),
+  (pallavi:Student {name: 'pallavi'}),
+  (manisha:Student {name: 'manisha'}),
+  (aish:Teacher {name: 'aish'})
+//create realationships
+CREATE
+  (chairman)-[:OF]->(nnrg),
+  (dean)-[:OF]->(nnrg),
+  (director)-[:OF]->(nnrg),
+  (hod)-[:FOR]->(cse),
+  (nnrg)-[:HAS_DEPARTMENT]->(cse),
+  (cse)-[:HAS_YEAR]->(firstYear),
+  (cse)-[:HAS_YEAR]->(secondYear),
+  (cse)-[:HAS_YEAR]->(thirdYear),
+  (cse)-[:HAS_YEAR]->(fourthYear),
+  
+  (Vishwani)-[:BELONGS_TO]->(firstYear),
+  (swetha)-[:BELONGS_TO]->(firstYear),
+  (teja)-[:BELONGS_TO]->(firstYear),
+  (nikitha)-[:BELONGS_TO]->(secondYear),
+  (akshitha)-[:BELONGS_TO]->(secondYear),
+  (pranaya)-[:BELONGS_TO]->(secondYear),
+  (pravalika)-[:BELONGS_TO]->(thirdYear),
+  (akshara)-[:BELONGS_TO]->(thirdYear),
+  (sravya)-[:BELONGS_TO]->(thirdYear),
+  (pallavi)-[:BELONGS_TO]->(fourthYear),
+
+  (firstYear)-[:HAS_STUDENT]->(Vishwani),
+  (firstYear)-[:HAS_STUDENT]->(swetha),
+  (firstYear)-[:HAS_STUDENT]->(teja),
+  (secondYear)-[:HAS_STUDENT]->(nikitha),
+  (secondYear)-[:HAS_STUDENT]->(akshitha),
+  (secondYear)-[:HAS_STUDENT]->(pranaya),
+  (thirdYear)-[:HAS_STUDENT]->(pravalika),
+  (thirdYear)-[:HAS_STUDENT]->(akshara),
+  (thirdYear)-[:HAS_STUDENT]->(sravya),
+  (fourthYear)-[:HAS_STUDENT]->(pallavi);
+
+
+
+//family
+//create family members and relationships
+// Create nodes and relationships
+CREATE 
+  (Dharmaraju:Person {name: 'Dharmaraju'}),
+  (Bharathi:Person {name: 'Bharathi'}),
+  (Rajasekhar:Person {name: 'Rajasekhar'}),
+  (Jyothi:Person {name: 'Jyothi'}),
+  (Raghu:Person {name: 'Raghu'}),
+  (Anitha:Person {name: 'Anitha'}),
+  (Srikanth:Person {name: 'Srikanth'}),
+  (Swetha:Person {name: 'Swetha'}),
+  (Anil:Person {name: 'Anil'}),
+  (Shireesha:Person {name: 'Shireesha'}),
+  (Vishwani:Person {name: 'Vishwani'}),
+  (Nideshwar:Person {name: 'Nideshwar'}),
+  (Srinikesh:Person {name: 'Srinikesh'}),
+  (Vignesh:Person {name: 'Vignesh'})
+  
+CREATE
+  (Bharathi)-[:SPOUSE_OF]->(Dharmaraju),
+  (Jyothi)-[:SPOUSE_OF]->(Rajasekhar),
+  (Anitha)-[:SPOUSE_OF]->(Raghu),
+  (Swetha)-[:SPOUSE_OF]->(Srikanth),
+  (Shireesha)-[:SPOUSE_OF]->(Anil),
+  
+  (Dharmaraju)-[:FATHER_OF]->(Jyothi),
+  (Dharmaraju)-[:FATHER_OF]->(Anitha),
+  (Dharmaraju)-[:FATHER_OF]->(Anil),
+  (Dharmaraju)-[:FATHER_OF]->(Swetha),
+  (Bharathi)-[:MOTHER_OF]->(Jyothi),
+  (Bharathi)-[:MOTHER_OF]->(Anitha),
+  (Bharathi)-[:MOTHER_OF]->(Anil),
+  (Bharathi)-[:MOTHER_OF]->(Swetha),
+  
+  (Rajasekhar)-[:FATHER_OF]->(Vishwani),
+  (Raghu)-[:FATHER_OF]->(Vignesh),
+  (Srikanth)-[:FATHER_OF]->(Nideshwar),
+  (Anil)-[:FATHER_OF]->(Srinikesh),
+  (Jyothi)-[:MOTHER_OF]->(Vishwani),
+  (Anitha)-[:MOTHER_OF]->(Vignesh),
+  (Shireesha)-[:MOTHER_OF]->(Srinikesh),
+  (Swetha)-[:MOTHER_OF]->(Nideshwar),
+  
+  (Dharmaraju)-[:GRANDFATHER_OF]->(Vishwani),
+  (Dharmaraju)-[:GRANDFATHER_OF]->(Nideshwar),
+  (Dharmaraju)-[:GRANDFATHER_OF]->(Srinikesh),
+  (Dharmaraju)-[:GRANDFATHER_OF]->(Vignesh),
+  (Bharathi)-[:GRANDMOTHER_OF]->(Vishwani),
+  (Bharathi)-[:GRANDMOTHER_OF]->(Nideshwar),
+  (Bharathi)-[:GRANDMOTHER_OF]->(Srinikesh),
+  (Bharathi)-[:GRANDMOTHER_OF]->(Vignesh);
+
+// Query to display nodes
+MATCH (p:Person)
+RETURN p;
+
 
